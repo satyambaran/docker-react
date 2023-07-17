@@ -20,3 +20,5 @@ deploy:
     # 93 94
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: "$AWS_SECRET_KEY"
+
+  # git checkout -b feature
