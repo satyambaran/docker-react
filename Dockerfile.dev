@@ -1,0 +1,27 @@
+FROM node:16-alpine
+
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+
+COPY . .  
+# with docker-compose settings, copy . . not required.
+# but its a good practice to keep it there
+
+CMD [ "npm","run","start" ]
+
+# DOCKER_BUILDKIT=0 docker build -f Dockerfile.dev .
+# DOCKER_BUILDKIT=0 docker run -p 3000:3000 571fea85f265
+
+# Docker volumes  (defaulting files present in local rather than in container)
+# DOCKER_BUILDKIT=0 docker run -p 3000:3000 -v $(pwd):/app  571fea85f265  
+#? wont work since we have deleted our local node_modules and overwriting in docker's one as well
+
+#? need to bookmark the same
+# DOCKER_BUILDKIT=0 docker run -p 3000:3000 -v /app/node_modules  -v $(pwd):/app  571fea85f265
+
+# Utilizing docker-compose to simplify the above command
+
+
+# docker run cont_id npm run test
+# docker exec -it cont_id npm run test
